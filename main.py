@@ -5,9 +5,9 @@ app = FastAPI()
 
 @app.get("/")
 def home():
-    return "API no ar"
+    return "API funcionando normalmente"
 
-@app.get("/das/{cnpj_recebido}/{ano_recebido}/{mes_recebido}")
-def pegar_mes2(cnpj_recebido: str, ano_recebido: str, mes_recebido: str):
-    bot = botChrome(cnpj_recebido,ano_recebido,mes_recebido)
+@app.get("/das/{cnpj_recebido}/{ano_recebido}/{mes_recebido}/{email_recebido}")
+def recolherDas(cnpj_recebido: str, ano_recebido: str, mes_recebido: str, email_recebido: str):
+    bot = botChrome(cnpj_recebido,ano_recebido,mes_recebido, email_recebido)
     return bot.bot()

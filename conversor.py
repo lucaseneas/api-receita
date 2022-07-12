@@ -1,7 +1,7 @@
 class date:
     def __init__(self, mes, ano):
-        self.month = mes
-        self.year = ano
+        self.mes = mes
+        self.ano = ano
 
     def formated(self):
         month_name = {
@@ -24,5 +24,5 @@ class date:
             '7': '2022'
         }
 
-        written = f' Data: {month_name[str(self.month)]} de {year_convert[str(self.year)]}.'
-        return written
+        textoFormatado = f' Data: {month_name[str(self.mes)]} de {year_convert[str(self.ano)]}.'
+        return textoFormatado
