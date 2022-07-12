@@ -15,7 +15,7 @@ class enviarEmail:
         email.HTMLBody = """
         <p>Olá, Conforme solicitado segue anexo com arquivo do DAS</p>
         """+self.cnpj+self.ano+"""
-        <p>Atenciosamente</p>
+        <p>Atenciosamente </p>
         
         <p>Palm Labs</p>
         """
