@@ -72,3 +72,5 @@ class botChrome:
             email.enviar()
 
             return "Download realizado com sucesso CNPJ: "+self.cnpj_recebido+" "+dataFormatando+", o arquivo sera enviado ao email "+self.email_recebido
+
+
