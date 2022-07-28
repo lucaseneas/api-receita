@@ -1,28 +1,48 @@
-class date:
+class data:
     def __init__(self, mes, ano):
         self.mes = mes
         self.ano = ano
 
-    def formated(self):
-        month_name = {
-            '2': 'Janeiro',
-            '3': 'Fevereiro',
-            '4': 'Março',
-            '5': 'Abril',
-            '6': 'Maio',
-            '7': 'Junho',
-            '8': 'Julho',
-            '9': 'Agosto',
-            '10': 'Setembro',
-            '11': 'Outubro',
-            '12': 'Novembro',
-            '13': 'Dezembro'
+    def dataFormatada(self):
+        nomeMes = {
+            '1': 'Janeiro',
+            '2': 'Fevereiro',
+            '3': 'Março',
+            '4': 'Abril',
+            '5': 'Maio',
+            '6': 'Junho',
+            '7': 'Julho',
+            '8': 'Agosto',
+            '9': 'Setembro',
+            '10': 'Outubro',
+            '11': 'Novembro',
+            '12': 'Dezembro'
         }
-        year_convert = {
-            '5': '2020',
-            '6': '2021',
-            '7': '2022'
-        }
-
-        textoFormatado = f' Data: {month_name[str(self.mes)]} de {year_convert[str(self.ano)]}.'
+        textoFormatado = f'{nomeMes[str(self.mes)]} de {self.ano}'
         return textoFormatado
+
+    def converterMes(self):
+        mesC = {
+            '1': '2',
+            '2': '3',
+            '3': '4',
+            '4': '5',
+            '5': '6',
+            '6': '7',
+            '7': '8',
+            '8': '9',
+            '9': '10',
+            '10': '11',
+            '11': '12',
+            '12': '13',
+        }
+        return f'{mesC[str(self.mes)]}'
+
+    def converterAno(self):
+        anoC = {
+            '2020': '5',
+            '2021': '6',
+            '2022': '7',
+            '2023': '8'
+        }
+        return f'{anoC[str(self.ano)]}'

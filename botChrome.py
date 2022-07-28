@@ -2,9 +2,8 @@ from selenium.webdriver.common.by import By
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
-from conversor import date
+from conversor import data
 from enviarEmail import enviarEmail
-
 
 # uvicorn main:app --reload
 
@@ -35,6 +34,8 @@ class botChrome:
             self.email_recebido = email_recebido
 
     def bot(self):
+            conversor = data(self.mes_recebido, self.ano_recebido)
+
             chrome_options = Options()
             chrome_options.add_argument("--disable-extensions")
             chrome_options.add_argument("--disable-blink-features=AutomationControlled")
@@ -53,24 +54,20 @@ class botChrome:
             elem = driver.find_element(By.XPATH, '/html/body/div/section[3]/div/div/div/div/div/form/div/div/button').click()
             time.sleep(1)
             elem = driver.find_element(By.XPATH,
-                                       '/html/body/div/section[3]/div/div/div/div/div/form/div/div/div/ul/li[' + self.ano_recebido + ']').click()
+                                       '/html/body/div/section[3]/div/div/div/div/div/form/div/div/div/ul/li[' + conversor.converterAno() + ']').click()
             time.sleep(1)
             elem = driver.find_element(By.XPATH, '/html/body/div/section[3]/div/div/div/div/div/form/button').click()
             time.sleep(1)
-            elem = driver.find_element(By.XPATH, '//*[@id="resumoDAS"]/table/tbody[' + self.mes_recebido + ']/tr/td[1]/input').click()
+            elem = driver.find_element(By.XPATH, '//*[@id="resumoDAS"]/table/tbody[' + conversor.converterMes() + ']/tr/td[1]/input').click()
             time.sleep(1)
             elem = driver.find_element(By.XPATH, '//*[@id="btnEmitirDas"]').click()
-            time.sleep(1)
+            time.sleep(2)
             elem = driver.find_element(By.XPATH,
                                        '/html/body/div[1]/section[3]/div/div/div[1]/div/div/div[3]/div/div/a[1]').click()
             time.sleep(2)
 
-            newDate = date(self.mes_recebido, self.ano_recebido)
-            dataFormatando = newDate.formated()
-
-            email = enviarEmail(self.cnpj_recebido, self.ano_recebido, self.email_recebido)
+            email = enviarEmail(self.cnpj_recebido, conversor.dataFormatada(), self.email_recebido)
             email.enviar()
-
-            return "Download realizado com sucesso CNPJ: "+self.cnpj_recebido+" "+dataFormatando+", o arquivo sera enviado ao email "+self.email_recebido
+            return "Download realizado com sucesso CNPJ: "+self.cnpj_recebido + " referente a " + conversor.dataFormatada() + ", o arquivo sera enviado ao email " + self.email_recebido
 
 
